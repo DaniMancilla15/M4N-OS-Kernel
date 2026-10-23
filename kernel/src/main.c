@@ -54,12 +54,12 @@ static uint32_t fb_pixel(struct limine_framebuffer *fb, uint8_t red, uint8_t gre
 
 // Print a nice pattern to a framebuffer as an example.
 static void fb_pattern(struct limine_framebuffer *fb) {
-    volatile uint32_t *fb_ptr = fb->address;
+    volatile uint32_t *pixels = fb->address;
+
     for (size_t y = 0; y < fb->height; y++) {
         for (size_t x = 0; x < fb->width; x++) {
-            uint8_t nX = x * 255 / fb->width;
-            uint8_t nY = y * 255 / fb->height;
-            fb_ptr[y * (fb->pitch / 4) + x] = fb_pixel(fb, 0, nY, nX);
+            pixels[y * (fb->pitch / 4) + x] =
+                fb_pixel(fb, 10, 18, 32);
         }
     }
 }
